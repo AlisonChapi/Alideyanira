@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alisson Deyanira Chapi Villarreal - Hoja de Vida</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 300px;
+            background-color: #fff;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            padding: 30px 20px;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: block;
+            border: 5px solid #00b894;
+            object-fit: cover;
+        }
+
+        .name {
+            text-align: center;
+            font-size: 24px;
+            font-weight: 700;
+            color: #2d3436;
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            background-color: #00b894;
+            color: white;
+            padding: 12px 15px;
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 25px 0 15px 0;
+            border-radius: 4px;
+        }
+
+        .contact-info, .external-links {
+            padding: 0 15px;
+        }
+
+        .contact-item, .link-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .contact-item:last-child, .link-item:last-child {
+            border-bottom: none;
+        }
+
+        .contact-item i, .link-item i {
+            width: 25px;
+            color: #00b894;
+            font-size: 16px;
+        }
+
+        .contact-item a, .link-item a {
+            color: #636e72;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-item a:hover, .link-item a:hover {
+            color: #00b894;
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            flex: 1;
+            margin-left: 300px;
+            padding: 30px;
+        }
+
+        .bio-section {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+        }
+
+        .section-header {
+            font-size: 24px;
+            color: #2d3436;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #00b894;
+        }
+
+        .bio-text {
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .quote {
+            font-style: italic;
+            color: #636e72;
+            border-left: 4px solid #00b894;
+            padding-left: 20px;
+            margin: 20px 0;
+        }
+
+        .interests-list {
+            list-style-type: decimal;
+            padding-left: 20px;
+        }
+
+        .interests-list li {
+            margin-bottom: 8px;
+            padding-left: 10px;
+        }
+
+        /* Portfolio Section */
+        .portfolio-section {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+        }
+
+        .tabs {
+            display: flex;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #eee;
+        }
+
+        .tab {
+            padding: 12px 25px;
+            cursor: pointer;
+            background-color: #f8f9fa;
+            border: 1px solid #eee;
+            border-bottom: none;
+            margin-right: 5px;
+            border-radius: 5px 5px 0 0;
+            transition: all 0.3s;
+        }
+
+        .tab.active {
+            background-color: #00b894;
+            color: white;
+            border-color: #00b894;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .year-section {
+            margin-bottom: 25px;
+        }
+
+        .year-header {
+            background-color: #f8f9fa;
+            padding: 12px 15px;
+            font-weight: 700;
+            color: #2d3436;
+            border-left: 4px solid #00b894;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .year-content {
+            padding: 20px 15px;
+            border: 1px solid #eee;
+            border-top: none;
+            display: none;
+        }
+
+        .year-content.active {
+            display: block;
+        }
+
+        .project-item {
+            padding: 15px;
+            margin-bottom: 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            border-left: 3px solid #00b894;
+        }
+
+        .project-title {
+            font-weight: 700;
+            color: #2d3436;
+            margin-bottom: 8px;
+        }
+
+        .project-link {
+            color: #00b894;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .project-link:hover {
+            text-decoration: underline;
+        }
+
+        .no-content {
+            text-align: center;
+            color: #636e72;
+            font-style: italic;
+            padding: 30px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                position: relative;
+                height: auto;
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .tabs {
+                flex-wrap: wrap;
+            }
+            
+            .tab {
+                margin-bottom: 5px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .sidebar, .main-content {
+                padding: 20px 15px;
+            }
+            
+            .name {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <img src="https://placehold.co/150x150/00b894/ffffff?text=AC" alt="Foto de perfil" class="profile-photo">
+            <h1 class="name">Alisson Deyanira Chapi Villarreal</h1>
+            
+            <div class="section-title">DATOS DE CONTACTO</div>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:alisson121200@gmail.com">alisson121200@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <a href="tel:0981112698">0981112698</a>
+                </div>
+            </div>
+            
+            <div class="section-title">LINKS EXTERNOS</div>
+            <div class="external-links">
+                <div class="link-item">
+                    <i class="fas fa-file-pdf"></i>
+                    <a href="https://upecedu-my.sharepoint.com/:b:/g/personal/alison_chapi_upec_edu_ec/EQESppD5nmhLljN_Mio8B0kBMBU9isgSSt98Q1-6TVtRyw?e=473g89" target="_blank">Hoja de Vida PDF</a>
+                </div>
+                <div class="link-item">
+                    <i class="fab fa-linkedin"></i>
+                    <a href="www.linkedin.com/in/alisson-chapi-07661138a" target="_blank">LinkedIn</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Biografía Section -->
+            <div class="bio-section">
+                <h2 class="section-header">BIOGRAFÍA</h2>
+                <div class="bio-text">
+                    <p>Soy Ingeniera en Logística y Transporte por la Universidad Politécnica Estatal del Carchi (UPEC), con una formación orientada al diseño, gestión y optimización de procesos logísticos en entornos nacionales e internacionales. Cuento además con una base sólida en Ingeniería Civil, que me permite integrar conocimientos técnicos de infraestructura con la planificación operativa, generando una visión integral de la cadena logística y del transporte.</p>
+                    <p>Mi especialización abarca áreas como la distribución física internacional, logística de aprovisionamiento, almacenamiento e inventarios, transporte intermodal, economía y derecho del transporte, lo que me ha permitido desarrollar competencias en el uso de herramientas tecnológicas, bases de datos y TIC aplicadas a la planificación estratégica. Estas capacidades fortalecen mi habilidad para analizar, planificar y proponer soluciones innovadoras que optimizan recursos, reducen costos y mejoran la eficiencia operativa.</p>
+                    <p>Me distingo por mi liderazgo, visión global y compromiso ético, cualidades que me permiten trabajar eficazmente en equipos multidisciplinarios y contribuir al desarrollo de estrategias sostenibles que impulsen la competitividad organizacional. Mi objetivo profesional se centra en integrar la innovación tecnológica con la gestión logística para alcanzar operaciones más inteligentes, ágiles y sostenibles.</p>
+                </div>
+                <div class="quote">
+                    "Ingeniera en Logística y Transporte, apasionada por la planificación, la eficiencia y la innovación en cada proceso."
+                </div>
+                <h3>Intereses profesionales:</h3>
+                <ol class="interests-list">
+                    <li>Gestión de la cadena de suministro</li>
+                    <li>Logística y gestión de transporte</li>
+                    <li>Optimización de procesos logísticos</li>
+                    <li>Seguridad y normativa del transporte</li>
+                    <li>Transporte internacional y distribución física internacional</li>
+                    <li>Gestión de compras y proveedores</li>
+                    <li>Análisis y control de costos logísticos</li>
+                    <li>Logística de última milla</li>
+                </ol>
+            </div>
+            
+            <!-- Portfolio Section -->
+            <div class="portfolio-section">
+                <h2 class="section-header">PORTAFOLIO DE PROYECTOS</h2>
+                
+                <div class="tabs">
+                    <div class="tab active" data-tab="consultoria">PROYECTOS CONSULTORÍA</div>
+                    <div class="tab" data-tab="cursos">CURSOS</div>
+                    <div class="tab" data-tab="colaboraciones">COLABORACIONES</div>
+                </div>
+                
+                <!-- Proyectos Consultoría Tab -->
+                <div class="tab-content active" id="consultoria-tab">
+                    <div class="year-section">
+                        <div class="year-header" onclick="toggleYear(this)">
+                            2023
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="year-content">
+                            <div class="no-content">No hay proyectos de consultoría registrados para este año.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="year-section">
+                        <div class="year-header" onclick="toggleYear(this)">
+                            2022
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="year-content">
+                            <div class="no-content">No hay proyectos de consultoría registrados para este año.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="year-section">
+                        <div class="year-header" onclick="toggleYear(this)">
+                            2021
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="year-content">
+                            <div class="no-content">No hay proyectos de consultoría registrados para este año.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="year-section">
+                        <div class="year-header" onclick="toggleYear(this)">
+                            2020
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="year-content">
+                            <div class="no-content">No hay proyectos de consultoría registrados para este año.</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Cursos Tab -->
+                <div class="tab-content" id="cursos-tab">
+                    <div class="year-section">
+                        <div class="year-header" onclick="toggleYear(this)">
+                            2024
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="year-content">
+                            <div class="project-item">
+                                <div class="project-title">Cert. Universidades Segura libre de violencia</div>
+                                <p>Duración: 24 horas</p>
+                                <a href="https://upecedu-my.sharepoint.com/:b:/g/personal/alison_chapi_upec_edu_ec/EaMOqJdKtohFq1mOVBUU6GoB1kl84RaAGLi2yzqAeAX3Qw?e=BGEcsJ" class="project-link" target="_blank">Ver certificado</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="year-section">
+                        <div class="year-header" onclick="toggleYear(this)">
+                            2025
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="year-content">
+                            <div class="project-item">
+                                <div class="project-title">VIII Congreso Internacional de Ciencias Económicas y Sociales</div>
+                                <p>Duración: 36 horas</p>
+                                <a href="https://upecedu-my.sharepoint.com/:b:/g/personal/alison_chapi_upec_edu_ec/Eb8NTTAtgJ9MjTpAsx5WCk4BpL4DX3HoH3C4U9O6D2XXwg?e=LztgaT" class="project-link" target="_blank">Ver certificado</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="year-section">
+                        <div class="year-header" onclick="toggleYear(this)">
+                            2023
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="year-content">
+                            <div class="no-content">No hay cursos registrados para este año.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="year-section">
+                        <div class="year-header" onclick="toggleYear(this)">
+                            2022
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="year-content">
+                            <div class="no-content">No hay cursos registrados para este año.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="year-section">
+                        <div class="year-header" onclick="toggleYear(this)">
+                            2021
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="year-content">
+                            <div class="no-content">No hay cursos registrados para este año.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="year-section">
+                        <div class="year-header" onclick="toggleYear(this)">
+                            2020
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="year-content">
+                            <div class="no-content">No hay cursos registrados para este año.</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Colaboraciones Tab -->
+                <div class="tab-content" id="colaboraciones-tab">
+                    <div class="year-section">
+                        <div class="year-header" onclick="toggleYear(this)">
+                            2023
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="year-content">
+                            <div class="no-content">No hay colaboraciones registradas para este año.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="year-section">
+                        <div class="year-header" onclick="toggleYear(this)">
+                            2022
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="year-content">
+                            <div class="no-content">No hay colaboraciones registradas para este año.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="year-section">
+                        <div class="year-header" onclick="toggleYear(this)">
+                            2021
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="year-content">
+                            <div class="no-content">No hay colaboraciones registradas para este año.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="year-section">
+                        <div class="year-header" onclick="toggleYear(this)">
+                            2020
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="year-content">
+                            <div class="no-content">No hay colaboraciones registradas para este año.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab switching functionality
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and content
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked tab
+                tab.classList.add('active');
+                
+                // Show corresponding content
+                const tabId = tab.getAttribute('data-tab');
+                document.getElementById(`${tabId}-tab`).classList.add('active');
+            });
+        });
+        
+        // Year toggle functionality
+        function toggleYear(element) {
+            const content = element.nextElementSibling;
+            const icon = element.querySelector('i');
+            
+            content.classList.toggle('active');
+            
+            if (content.classList.contains('active')) {
+                icon.classList.remove('fa-chevron-down');
+                icon.classList.add('fa-chevron-up');
+            } else {
+                icon.classList.remove('fa-chevron-up');
+                icon.classList.add('fa-chevron-down');
+            }
+        }
+    </script>
+</body>
+</html>
